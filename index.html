@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StarWalks — Walk to catch the stars</title>
+<meta name="description" content="StarWalks turns walking into a game: capture stars scattered along real paths, track your progress, and compare with friends.">
+<style>
+  :root {
+    --bg: #0f0f18; --fg: #ececf0; --muted: #9a9aa2; --accent: #ffce4a;
+    --card: #1a1a26; --line: #2a2a38;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background:
+      radial-gradient(1200px 600px at 50% -10%, #2a2350 0%, transparent 60%),
+      var(--bg);
+    color: var(--fg);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 72px 20px 80px; text-align: center; }
+  .star { font-size: 56px; line-height: 1; }
+  h1 { font-size: 40px; margin: 16px 0 6px; letter-spacing: -0.03em; }
+  .tag { color: var(--muted); font-size: 20px; margin: 0 0 36px; }
+  .lead { font-size: 18px; max-width: 540px; margin: 0 auto 36px; }
+  .features { display: grid; gap: 12px; text-align: left; margin: 0 auto 40px; max-width: 520px; }
+  .feat { background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 14px 18px; }
+  .feat b { color: var(--accent); }
+  a { color: var(--accent); }
+  .links { margin-top: 28px; font-size: 16px; }
+  .links a { margin: 0 10px; }
+  footer { margin-top: 44px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="star">⭐️</div>
+  <h1>StarWalks</h1>
+  <p class="tag">Walk to catch the stars.</p>
+
+  <p class="lead">Stars are scattered along the real walkable paths around you.
+  Start a walk, stroll up to one, and it's yours. The more you move, the more of
+  your neighborhood's sky you collect.</p>
+
+  <div class="features">
+    <div class="feat"><b>Capture by walking.</b> Deterministic stars sit on real
+    sidewalks and paths — reach one on foot to catch it.</div>
+    <div class="feat"><b>Track your progress.</b> Steps, distance, and streaks by
+    day, week, month, and year, saved to Apple Health as workouts.</div>
+    <div class="feat"><b>Walk with friends.</b> Private group leaderboards compare
+    daily totals — never your location or routes.</div>
+    <div class="feat"><b>Yours, and private.</b> No account, no ads, no tracking.
+    Your location never leaves your device.</div>
+  </div>
+
+  <h2>Support</h2>
+  <p>Need help or have feedback? Email
+  <a href="mailto:shonil.vijay@gmail.com">shonil.vijay@gmail.com</a>.</p>
+
+  <div class="links">
+    <a href="./privacy.html">Privacy Policy</a>
+  </div>
+
+  <footer>
+    © 2026 Shonil Vijay · Star placement uses map data © OpenStreetMap contributors.
+  </footer>
+</div>
+</body>
+</html>
