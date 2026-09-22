@@ -8,7 +8,7 @@
     :root { color-scheme: light dark; }
     body {
       margin: 0; min-height: 100vh; display: grid; place-items: center;
-      font: 17px/1.5 -apple-system, system-ui, sans-serif;
+      font: 17px/1.5 -apple-system, system-ui, Roboto, sans-serif;
       background: linear-gradient(180deg, #0d1238 0%, #221a5c 100%); color: #fff;
       text-align: center; padding: 24px;
     }
@@ -27,24 +27,59 @@
       border-radius: 999px;
     }
     .muted { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 1.5rem; }
+    .pill {
+      display: inline-block; margin-top: 1rem; padding: 0.6rem 1rem;
+      background: rgba(255,255,255,0.12); border-radius: 999px; font-weight: 600;
+    }
+    [hidden] { display: none; }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="star">⭐</div>
     <h1>You're invited to a StarWalks group</h1>
-    <p>If StarWalks is installed, this link opens it straight to the join screen.
-       Otherwise, install StarWalks and enter this invite code under
-       <b>Groups → Join Group</b>:</p>
-    <div class="code" id="code">—</div>
-    <p><a class="button" href="https://apps.apple.com/app/starwalks">Get StarWalks</a></p>
+
+    <!-- iOS, app not installed -->
+    <div id="ios" hidden>
+      <p>Install StarWalks, then enter this invite code under
+         <b>Groups → Join Group</b>:</p>
+      <div class="code" id="code-ios">—</div>
+      <p><a class="button" href="https://apps.apple.com/app/starwalks">Get StarWalks</a></p>
+    </div>
+
+    <!-- Android -->
+    <div id="android" hidden>
+      <p><b>StarWalks isn't on Android yet — it's coming soon.</b></p>
+      <p>Save this invite code and join once the Android app is out:</p>
+      <div class="code" id="code-android">—</div>
+    </div>
+
+    <!-- Desktop / anything else -->
+    <div id="other" hidden>
+      <p>StarWalks is an iPhone app. Open this link on your iPhone to join, or
+         save this invite code:</p>
+      <div class="code" id="code-other">—</div>
+      <div class="pill" id="android-note" hidden>Android support is coming soon.</div>
+    </div>
+
     <p class="muted">StarWalks turns walking into a game — catch stars on real
        paths and compare daily steps with friends.</p>
   </div>
+
   <script>
-    // Show the invite code from ?code= so it's usable without the app.
-    var code = new URLSearchParams(location.search).get('code');
-    if (code) { document.getElementById('code').textContent = code.toUpperCase(); }
+    var code = (new URLSearchParams(location.search).get('code') || '').toUpperCase() || '—';
+    var ua = navigator.userAgent || '';
+    var isAndroid = /android/i.test(ua);
+    var isIOS = /iphone|ipad|ipod/i.test(ua)
+             || (/Mac/i.test(ua) && navigator.maxTouchPoints > 1); // iPadOS
+    var target = isAndroid ? 'android' : (isIOS ? 'ios' : 'other');
+    document.getElementById(target).hidden = false;
+    ['code-ios', 'code-android', 'code-other'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = code;
+    });
+    // On desktop, still hint that Android is on the way.
+    if (target === 'other') { document.getElementById('android-note').hidden = false; }
   </script>
 </body>
 </html>
